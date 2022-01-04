@@ -13,7 +13,19 @@ const Navbar = () => {
             sx={{ flexGrow: 1 }}
             color="secondary"
           >
-            <Link href="/" color="inherit" underline="none">
+            <Link
+              href="/"
+              color="inherit"
+              underline="none"
+              style={{
+                color: "#3F51B5",
+                fontFamily: "Cronos Pro",
+                fontStyle: "normal",
+                fontWeight: "bolder",
+                fontSize: "30px",
+                lineHeight: "58px",
+              }}
+            >
               tu-viaje
             </Link>
           </Typography>

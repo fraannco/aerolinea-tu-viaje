@@ -3,9 +3,9 @@ import {
   Routes,
   BrowserRouter as Router,
 } from 'react-router-dom';
-import Ayuda from './Components/Ayuda';
 import Navbar from './Components/Navbar';
 import Inicio from './Pages/Inicio'
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -13,10 +13,9 @@ function App() {
       <div className="App">
         <Navbar />
       </div>
-
       <Routes>
         <Route exact path="/" element={<Inicio/>}/>
-        <Route exact path="/login" element={<Ayuda />}/>
+        <Route exact path="/login" element={<Login />}/>
       </Routes>
     </Router>
   );
