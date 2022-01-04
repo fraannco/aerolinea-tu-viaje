@@ -13,7 +13,6 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
   },
   media: {
     height: 140,
