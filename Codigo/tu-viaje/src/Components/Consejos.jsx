@@ -2,7 +2,6 @@ import React from "react";
 import { Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MediaCard from "./Cards/MediaCard";
-import { makeStyles } from "@mui/styles";
 
 const mediaCards = [
   {
