@@ -5,7 +5,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: "#fff" }}>
+      <AppBar position="static" style={{ background: "#fff", boxShadow: "none" }}>
         <Toolbar sx={{ mx: 20 }}>
           <Typography
             variant="h6"
@@ -63,7 +63,9 @@ const Navbar = () => {
             sx={{ ml: 3 }}
             style={{ color: "#000" }}
           >
-            Inciar Sesión
+            <Link underline="none" href="/login" style={{ color: "#000" }}>
+              Iniciar Sesión
+            </Link>
           </Button>
         </Toolbar>
       </AppBar>

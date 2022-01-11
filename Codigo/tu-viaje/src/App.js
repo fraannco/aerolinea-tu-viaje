@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Inicio from './Pages/Inicio'
-import Login from './Pages/Login';
+import LoginPage from './Pages/Login';
+import RegisterPage from './Pages/Register';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       </div>
       <Routes>
         <Route exact path="/" element={<Inicio/>}/>
-        <Route exact path="/login" element={<Login />}/>
+        <Route exact path="/login" element={<LoginPage />}/>
+        <Route exact path="/register" element={<RegisterPage />}/>
       </Routes>
     </Router>
   );

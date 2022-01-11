@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Grid,
@@ -8,6 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const paperStyle = {
     padding: 20,
     width: "600px",
@@ -56,26 +59,42 @@ const Login = () => {
           </Grid>
         </Grid>
         <Grid p={1}>
-          <Grid style={{ padding: "5px" }}>
-            <TextField
-              id="outlined-required"
-              placeholder="Ingrese su correo"
-              label="Correo"
-              type="email"
+          <form>
+            <Grid style={{ padding: "5px" }}>
+              <TextField
+                id="outlined-required"
+                placeholder="Ingrese su correo"
+                label="Correo"
+                type="email"
+                fullWidth
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid style={{ padding: "5px" }}>
+              <TextField
+                id="outlined-required"
+                placeholder="Ingrese su contraseña"
+                label="Contraseña"
+                type="password"
+                fullWidth
+                required
+                value={password}
+                nChange={(e) => setPassword(e.target.value)}
+              />
+            </Grid>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              size="large"
+              style={btnstyle}
               fullWidth
-              required
-            />
-          </Grid>
-          <Grid style={{ padding: "5px" }}>
-            <TextField
-              id="outlined-required"
-              placeholder="Ingrese su contraseña"
-              label="Contraseña"
-              type="password"
-              fullWidth
-              required
-            />
-          </Grid>
+            >
+              Iniciar Sesión
+            </Button>
+          </form>
         </Grid>
         <Grid p={2} align="right">
           <Typography>
@@ -83,16 +102,6 @@ const Login = () => {
           </Typography>
         </Grid>
         <Grid p={2}>
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            size="large"
-            style={btnstyle}
-            fullWidth
-          >
-            Iniciar Sesión
-          </Button>
           <Button
             type="submit"
             color="primary"
