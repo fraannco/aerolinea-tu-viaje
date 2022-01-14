@@ -7,6 +7,7 @@ import Navbar from './Components/Navbar';
 import Inicio from './Pages/Inicio'
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
+import SearchFlights from './Pages/SearchFlights';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" element={<Inicio/>}/>
         <Route exact path="/login" element={<LoginPage />}/>
         <Route exact path="/register" element={<RegisterPage />}/>
+        <Route exact path="/search" element={<SearchFlights />}/>
       </Routes>
     </Router>
   );

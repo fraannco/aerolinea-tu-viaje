@@ -1,6 +1,6 @@
 import { Button, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import Searchbox from "./Searchbox";
+import SearchboxV2 from "./SearchBoxV2";
 
 
 const Hero = () => {
@@ -49,7 +49,7 @@ const Hero = () => {
             unica en tu vida!
           </Typography>
         </Grid>
-        <Grid
+{/*         <Grid
           item
           xs
           style={{
@@ -82,9 +82,9 @@ const Hero = () => {
           >
             Solo ida
           </Button>
-        </Grid>
+        </Grid> */}
         <Grid item xs>
-          <Searchbox />
+          <SearchboxV2 />
         </Grid>
       </Grid>
     </Container>

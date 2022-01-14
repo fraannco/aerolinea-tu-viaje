@@ -44,7 +44,6 @@ const Register = () => {
         `Nombres del cliente: ${cuenta.nombres}\nApellidos del cliente: ${cuenta.apellidos} \nDNI del cliente: ${cuenta.dni} \nCorreo: ${cuenta.correo} \nContraseña: ${cuenta.password}`
       );
     }else setError(true)
-    
   };
 
   return (
