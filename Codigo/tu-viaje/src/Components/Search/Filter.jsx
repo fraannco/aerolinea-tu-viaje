@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
-import SearchboxV2 from "../SearchBoxV2";
+import SearchboxV2 from "../../Views/Search/components/SearchBox";
 
 const useStyles = makeStyles({
   resultFilter: {
@@ -19,7 +19,7 @@ const Filter = () => {
   return (
     <Box className={classes.resultFilter}>
       <Typography variant="h6" ml={2} align="left" py={2}>
-        Vuelos
+        Modifica tu busqueda
       </Typography>
       <SearchboxV2 />
     </Box>

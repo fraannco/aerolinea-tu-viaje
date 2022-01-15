@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MediaCard from "./MediaCard";
 
@@ -40,51 +40,34 @@ const mediaCards = [
 
 const RecomendationNational = () => {
   return (
-    <Box p={5}>
-      <Grid
-        container
-        style={{
-          backgroundColor: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "1.5em",
-        }}
-      >
-        <Typography
-          style={{
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "250",
-            fontSize: "18px",
-            marginRight: "30%"
-          }}
-        >
-          Selección de las mejores ofertas de esta semana. ¡No te pierdas esta
-          oportunidad única!
-        </Typography>
-
-        <Button
-          style={{
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            fontSize: "18px",
-          }}
-        >
-          Ver más
-        </Button>
-      </Grid>
-      <Grid container spacing={6} alignContent="center" justifyContent="center">
-        {mediaCards.map((mediaCard, i) => {
-          return (
-            <Grid 
-              item xs={2}
-            >
-              <MediaCard key={i} {...mediaCard} />
+    <Box p={4}>
+      <Grid container>
+        <Grid item xs={12} align="left" justify="center" p={2} mx={10}>
+          <Typography
+            style={{
+              fontFamily: "Roboto",
+              fontStyle: "normal",
+              fontWeight: "250",
+              fontSize: "18px",
+            }}
+          >
+            Selección de las mejores ofertas de esta semana. ¡No te pierdas esta
+            oportunidad única!
+          </Typography>
+        </Grid>
+        <Grid item xs={12} p={2} mx={10}>
+          <Box>
+            <Grid container>
+              {mediaCards.map((mediaCard, i) => {
+                return (
+                  <Grid key={i} item xs={12} md={3} sm={12}>
+                    <MediaCard {...mediaCard} />
+                  </Grid>
+                );
+              })}
             </Grid>
-          );
-        })}
+          </Box>
+        </Grid>
       </Grid>
     </Box>
   );
