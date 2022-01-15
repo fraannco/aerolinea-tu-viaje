@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Result = () => {
+const Result = ({vuelo, fechaSalida, fechaLlegada}) => {
   const classes = useStyles();
   return (
     <Grid

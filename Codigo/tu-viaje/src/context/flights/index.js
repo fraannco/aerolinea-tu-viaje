@@ -1,4 +1,4 @@
 import {createContext} from "react"
 
-const FlightsContext = createContext("pokemon");
+const FlightsContext = createContext("flights");
 export default FlightsContext;

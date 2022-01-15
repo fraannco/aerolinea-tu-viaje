@@ -1,7 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
+import FlightsContext from "../../context/flights";
 import Result from "./Result";
 
 const useStyles = makeStyles({
@@ -14,7 +16,17 @@ const useStyles = makeStyles({
 });
 
 const Results = ({ serachText }) => {
+  const { flights } = useContext(FlightsContext);
+  const { id } = useParams();
+  const filterData = flights.filter((value) => {
+    if (value.arrival.timezone != null)
+      return value.arrival.timezone.includes(id);
+    else return [];
+  });
+
   const classes = useStyles();
+
+  console.log(id, flights);
   return (
     <Box className={classes.resultBox}>
       <Grid container>
@@ -25,18 +37,13 @@ const Results = ({ serachText }) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item p={1} xs={12}>
-          <Result />
-        </Grid>
-        <Grid item p={1} xs={12}>
-          <Result />
-        </Grid>
-        <Grid item p={1} xs={12}>
-          <Result />
-        </Grid>
-        <Grid item p={1} xs={12}>
-          <Result />
-        </Grid>
+        {filterData?.map((index) => {
+          return (
+            <Grid key={index} item p={1} xs={12}>
+              <Result/>
+            </Grid>
+          );
+        })}
       </Grid>
     </Box>
   );

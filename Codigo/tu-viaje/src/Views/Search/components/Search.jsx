@@ -1,15 +1,16 @@
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import FlightsContext from "../../../context/flights";
 import Searchbox from "./SearchBox";
 
 const Search = () => {
-  const [datos, setDatos] = React.useState([]);
-/*   const [results, setResults] = React.useState([]);
+/*   const [datos, setDatos] = React.useState([]);
+  const [results, setResults] = React.useState([]); */
 
-  React.useEffect(() => {
+/*   React.useEffect(() => {
     const getFlights = async () => {
       fetch(
-        "http://api.aviationstack.com/v1/flights?access_key=9546acef96b69e9a633e1c278321a5e7"
+        "http://api.aviationstack.com/v1/flights?access_key=95e9a288d1549305a6b27499019b0bdd"
       )
         .then((response) => response.json())
         .then((vuelos) => {
@@ -21,19 +22,27 @@ const Search = () => {
 
   console.log(datos); */
 
+  const { getFlights, flights } = useContext(FlightsContext);
+  useEffect(() => {
+    getFlights().catch(null)
+  },[]);
+
+  console.log(flights)
+
   const handleSearchClick = (searchText) => {
-    if (datos?.length) {
+/*     if (datos?.length) {
       try {
         const filterData = datos.filter((value) => {
           if (value.arrival.timezone != null)
             return value.arrival.timezone.includes(searchText);
           else return [];
         });
-        /* setResults(filterData); */
+        setResults(filterData);
+        console.log(results)
       } catch (error) {
         console.log(error);
       }
-    }
+    } */
   };
   return (
     <Box p={4}>
