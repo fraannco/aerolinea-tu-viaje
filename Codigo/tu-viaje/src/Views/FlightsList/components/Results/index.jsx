@@ -1,10 +1,10 @@
+import React, { useContext, useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import FlightsContext from "../../context/flights";
 import Result from "./Result";
+import FlightsContext from "../../../../context/flights";
 
 const useStyles = makeStyles({
   resultBox: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 const Results = ({ serachText }) => {
-  const { flights,  tipoVuelo} = useContext(FlightsContext);
+  const { flights, vueloSeleccionado } = useContext(FlightsContext);
   const { id } = useParams();
 
   const filterData = flights.filter((value) => {
@@ -32,9 +32,15 @@ const Results = ({ serachText }) => {
       <Grid container>
         <Grid item justify="left" align="left" xs={12}>
           <Box>
-            <Typography variant="h6" ml={2}>
-              {tipoVuelo ? 'Elige un vuelo de ida' : 'Elige un vuelo de vuelta'}
-            </Typography>
+            {vueloSeleccionado.length === 0 ? (
+              <Typography variant="h6" ml={2}>
+                Elige un vuelo de ida
+              </Typography>
+            ) : (
+              <Typography variant="h6" ml={2}>
+                Elige un vuelo de vuela
+              </Typography>
+            )}
           </Box>
         </Grid>
         <Grid item justify="left" align="left" xs={12}>

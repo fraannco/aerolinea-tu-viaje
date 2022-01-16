@@ -29,8 +29,8 @@ const Search = () => {
 
   console.log(flights)
 
-  const handleSearchClick = (searchText) => {
-/*     if (datos?.length) {
+/*   const handleSearchClick = (searchText) => {
+     if (datos?.length) {
       try {
         const filterData = datos.filter((value) => {
           if (value.arrival.timezone != null)
@@ -42,8 +42,8 @@ const Search = () => {
       } catch (error) {
         console.log(error);
       }
-    } */
-  };
+    } 
+  }; */
   return (
     <Box p={4}>
       <Paper style={{ boxShadow: "none" }}>
@@ -87,7 +87,7 @@ const Search = () => {
             </Typography>
           </Grid>
           <Grid item xs>
-            <Searchbox onSearch={handleSearchClick} />
+            <Searchbox />
           </Grid>
         </Grid>
         </Container>

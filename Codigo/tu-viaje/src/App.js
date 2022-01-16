@@ -8,8 +8,8 @@ import Navbar from './Components/Navbar';
 import FlightsProvider from "./context/flights/Provider";
 import LoginPage from "./Views/auth/Login";
 import RegisterPage from "./Views/auth/Register";
-import FlightsList from "./Views/FlightsList/FlightsList";
-import Inicio from "./Views/Search";
+import { SearchFlights } from "./Views/FlightsList";
+import Inicio from "./Views/Inicio";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/" element={<Inicio />} />
           <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/register" element={<RegisterPage />} />
-          <Route exact path="/flights/:id" element={<FlightsList />} />
+          <Route exact path="/ida/:id" element={<SearchFlights />} />
         </Routes>
       </Router>
     </FlightsProvider>

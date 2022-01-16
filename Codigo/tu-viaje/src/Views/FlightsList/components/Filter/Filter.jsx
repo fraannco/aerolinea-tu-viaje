@@ -1,8 +1,9 @@
+import React from "react";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import React from "react";
-import SearchboxV2 from "../../Views/Search/components/SearchBox";
+import Searchbox from "../../../Inicio/components/SearchBox";
+
 
 const useStyles = makeStyles({
   resultFilter: {
@@ -21,7 +22,7 @@ const Filter = () => {
       <Typography variant="h6" ml={2} align="left" py={2}>
         Modifica tu busqueda
       </Typography>
-      <SearchboxV2 />
+      <Searchbox />
     </Box>
   );
 };

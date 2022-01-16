@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useParams } from "react-router-dom";
-import FlightsContext from "../../context/flights";
+import { Link, useParams } from "react-router-dom";
+import FlightsContext from "../../../../context/flights";
 
 const useStyles = makeStyles({
   container: {
@@ -15,16 +15,19 @@ const useStyles = makeStyles({
 });
 
 const Result = ({ arrival, departure, airline, flight }, props) => {
-  
-  const { vueloBuscado, setVueloBuscado, uno, setUno } = useContext(FlightsContext);
+  const { vueloSeleccionado } = useContext(FlightsContext);
 
   const classes = useStyles();
   const { id } = useParams();
-  const [precio, setPrecio] = useState(
-    Math.floor(Math.random() * (1000 - 500)) + 500
-  );
-  if(props){
-    var vuelo ={
+  const precio = Math.floor(Math.random() * (1000 - 500)) + 500;
+
+  const [estado, setEstado] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setEstado(!estado);
+    console.log(vueloSeleccionado, vueloSeleccionado.length);
+    vueloSeleccionado.push({
       salida: departure.timezone,
       aeropuertoSalida: departure.airport,
       llegada: arrival.timezone,
@@ -34,9 +37,9 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       numeroVuelo: flight.number,
       codigoVuelo: flight.icao,
       pagado: false,
-    };
-  }
-
+    });
+    console.log(vueloSeleccionado, vueloSeleccionado.length);
+  };
 
   return (
     <Grid
@@ -97,17 +100,18 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
             size="large"
             variant="outlined"
             fullWidth
-            onClick={(e) => {
-              e.preventDefault()
-              if(uno.length !== 0){
-                setUno(vuelo)
-              }else{
-                console.error("No hay datos en vuelo")
-              }
-              console.log(uno)
-            }}
+            onClick={handleClick}
           >
-            Me interesa
+            true
+          </Button>{" "}
+          :{" "}
+          <Button
+            size="large"
+            variant="outlined"
+            fullWidth
+            onClick={handleClick}
+          >
+            <Link>false</Link>
           </Button>
         </Box>
       </Grid>

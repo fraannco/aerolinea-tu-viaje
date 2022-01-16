@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Searchbox = ({ onSearch }) => {
+const Searchbox = () => {
   const classes = useStyles();
   const [fechaIda, setFechaIda] = React.useState(new Date());
   const [fechaVuelta, setFechaVuelta] = React.useState(new Date());
@@ -132,7 +132,7 @@ const Searchbox = ({ onSearch }) => {
           </Grid>
 
           <Grid item xs={12} md={12} sm={12} align="center" p={1}>
-            <Link to={`/flights/${destino}`}>
+            <Link to={`/ida/${destino}`}>
               <Button
                 color="secondary"
                 variant="contained"
