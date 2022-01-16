@@ -16,8 +16,9 @@ const useStyles = makeStyles({
 });
 
 const Results = ({ serachText }) => {
-  const { flights } = useContext(FlightsContext);
+  const { flights,  tipoVuelo} = useContext(FlightsContext);
   const { id } = useParams();
+
   const filterData = flights.filter((value) => {
     if (value.arrival.timezone != null)
       return value.arrival.timezone.includes(id);
@@ -26,24 +27,29 @@ const Results = ({ serachText }) => {
 
   const classes = useStyles();
 
-  console.log(id, flights);
   return (
     <Box className={classes.resultBox}>
       <Grid container>
         <Grid item justify="left" align="left" xs={12}>
           <Box>
             <Typography variant="h6" ml={2}>
-              Elige un vuelo de vuelta
+              {tipoVuelo ? 'Elige un vuelo de ida' : 'Elige un vuelo de vuelta'}
             </Typography>
           </Box>
         </Grid>
-        {filterData?.map((index) => {
-          return (
-            <Grid key={index} item p={1} xs={12}>
-              <Result/>
+        <Grid item justify="left" align="left" xs={12}>
+          <Box>
+            <Grid container>
+              {filterData?.map((data, index) => {
+                return (
+                  <Grid key={index} item p={1} xs={12}>
+                    <Result {...data} />
+                  </Grid>
+                );
+              })}
             </Grid>
-          );
-        })}
+          </Box>
+        </Grid>
       </Grid>
     </Box>
   );

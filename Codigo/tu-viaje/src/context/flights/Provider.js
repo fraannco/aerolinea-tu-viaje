@@ -5,6 +5,9 @@ import apiCall from "../../api";
 const FlightsProvider = ({ children }) => {
   const [flights, setFlights] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [uno, setUno] = useState({})
+  const [tipoVuelo, setTipoVuelo] = useState(false)
+
   const getFlights = async () => {
     try {
       const flightsResult = await apiCall({
@@ -17,7 +20,18 @@ const FlightsProvider = ({ children }) => {
     }
   };
   return (
-    <FlightsContext.Provider value={{ getFlights, flights, searchText, setSearchText }}>
+    <FlightsContext.Provider
+      value={{
+        getFlights,
+        flights,
+        searchText,
+        setSearchText,
+        uno, 
+        setUno,
+        tipoVuelo,
+        setTipoVuelo
+      }}
+    >
       {children}
     </FlightsContext.Provider>
   );

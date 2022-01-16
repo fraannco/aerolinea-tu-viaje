@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-/* import viaje from "../../../public/img/viaje.png" */
 
 const useStyles = makeStyles({
   container: {
