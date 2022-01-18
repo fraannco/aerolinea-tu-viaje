@@ -4,14 +4,18 @@ import apiCall from "../../api";
 
 const FlightsProvider = ({ children }) => {
   const [flights, setFlights] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [tipoVuelo, setTipoVuelo] = useState(false);
+  const [textosBuscados, setTextosBuscados] = useState([]);
+  const [fechas, setFechas] = useState([]);
+  const [nroPasajeros, setNroPasajeros] = useState(0)
+  const [busquedaIdaVuelta, setBusquedaIdaVuelta] = useState(true);
   const [vueloSeleccionado, setVueloSeleccionado] = useState([]);
-
+  const [assientosSeleccionado, setAsiendosSelecionado] = useState([]);
+  const [equipaje, setEquipaje] = useState([]);
+  
   const getFlights = async () => {
     try {
       const flightsResult = await apiCall({
-        url: "http://api.aviationstack.com/v1/flights?access_key=9fd41a28f68a5b5ef6f70f5bdcaa3146"
+        url: "http://api.aviationstack.com/v1/flights?access_key=fc6605d725b4d52e71897c7b2d7c85a5"
       });
       setFlights(flightsResult.data);
     } catch (error) {
@@ -24,14 +28,22 @@ const FlightsProvider = ({ children }) => {
   return (
     <FlightsContext.Provider
       value={{
-        vueloSeleccionado, 
+        vueloSeleccionado,
         setVueloSeleccionado,
         getFlights,
         flights,
-        searchText,
-        setSearchText,
-        tipoVuelo,
-        setTipoVuelo,
+        textosBuscados,
+        fechas,
+        setFechas,
+        setTextosBuscados,
+        busquedaIdaVuelta,
+        assientosSeleccionado, 
+        setAsiendosSelecionado,
+        setBusquedaIdaVuelta,
+        equipaje,
+        setEquipaje,
+        nroPasajeros, 
+        setNroPasajeros
       }}
     >
       {children}

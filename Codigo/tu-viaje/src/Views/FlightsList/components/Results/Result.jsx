@@ -15,30 +15,46 @@ const useStyles = makeStyles({
 });
 
 const Result = ({ arrival, departure, airline, flight }, props) => {
-  const { vueloSeleccionado } = useContext(FlightsContext);
+  const { vueloSeleccionado, busquedaIdaVuelta, setBusquedaIdaVuelta, textosBuscados, fechas } = useContext(FlightsContext);
 
   const classes = useStyles();
   const { id } = useParams();
   const precio = Math.floor(Math.random() * (1000 - 500)) + 500;
 
-  const [estado, setEstado] = useState(false);
-
   const handleClick = (e) => {
-    e.preventDefault();
-    setEstado(!estado);
-    console.log(vueloSeleccionado, vueloSeleccionado.length);
-    vueloSeleccionado.push({
-      salida: departure.timezone,
-      aeropuertoSalida: departure.airport,
-      llegada: arrival.timezone,
-      aerolineaLlegada: arrival.airport,
-      precio: precio,
-      aerolinea: airline.name,
-      numeroVuelo: flight.number,
-      codigoVuelo: flight.icao,
-      pagado: false,
-    });
-    console.log(vueloSeleccionado, vueloSeleccionado.length);
+    if(vueloSeleccionado.length===0){
+      vueloSeleccionado.push({
+        salida: departure.timezone,
+        aeropuertoSalida: departure.airport,
+        fechaSalida: fechas[0],
+        llegada: arrival.timezone,
+        aerolineaLlegada: arrival.airport,
+        fechaLlegada: new Date("2022-01-19"),
+        precio: precio,
+        aerolinea: airline.name,
+        numeroVuelo: flight.number,
+        codigoVuelo: flight.icao,
+        pagado: false,
+      });
+    }else{
+      vueloSeleccionado.push({
+        salida: departure.timezone,
+        aeropuertoSalida: departure.airport,
+        fechaSalida: new Date("2022-01-25"),
+        llegada: arrival.timezone,
+        aerolineaLlegada: arrival.airport,
+        fechaLlegada: fechas[1],
+        precio: precio,
+        aerolinea: airline.name,
+        numeroVuelo: flight.number,
+        codigoVuelo: flight.icao,
+        pagado: false,
+      });
+    }
+    
+    console.log(vueloSeleccionado.length)
+    console.log(vueloSeleccionado)
+    if(vueloSeleccionado.length===1) setBusquedaIdaVuelta(false)
   };
 
   return (
@@ -59,11 +75,11 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} md={4} sm={4} p={1}>
         <Box>
-          <Typography color="#757575" variant="subtitle1">
+          <Typography color="#757575" variant="subtitle1" style={{color: "black"}}>
             Fecha de salida
           </Typography>
           <Typography color="#757575" variant="subtitle1">
-            {departure.scheduled}
+            {`${fechas[0]}`}
           </Typography>
         </Box>
       </Grid>
@@ -79,11 +95,11 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} md={4} sm={4} p={1}>
         <Box>
-          <Typography color="#757575" variant="subtitle1">
+          <Typography color="#757575" variant="subtitle1" style={{color: "black"}}>
             Fecha de llegada
           </Typography>
           <Typography color="#757575" variant="subtitle1">
-            {arrival.scheduled}
+            {`${new Date("2022-01-19")}`}
           </Typography>
         </Box>
       </Grid>
@@ -96,23 +112,16 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} justify="center" align="center" p={1}>
         <Box>
-          <Button
-            size="large"
-            variant="outlined"
-            fullWidth
-            onClick={handleClick}
-          >
-            true
-          </Button>{" "}
-          :{" "}
-          <Button
-            size="large"
-            variant="outlined"
-            fullWidth
-            onClick={handleClick}
-          >
-            <Link>false</Link>
-          </Button>
+          <Link to={busquedaIdaVuelta ? `/vuelta/${textosBuscados[0]}` : `/asientos_ida/${vueloSeleccionado[0].codigoVuelo}`} style={{textDecoration: "none"}}>
+            <Button
+              size="large"
+              variant="outlined"
+              fullWidth
+              onClick={handleClick}
+            >
+              Seleccionar
+            </Button>
+          </Link>
         </Box>
       </Grid>
     </Grid>
