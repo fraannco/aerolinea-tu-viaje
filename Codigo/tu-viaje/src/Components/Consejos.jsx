@@ -5,38 +5,38 @@ import MediaCard from "./Cards/MediaCard";
 
 const mediaCards = [
   {
-    image: "/img/vichayito.jpg",
-    title: "Vichayito",
-    description: "Solo ida, económico",
-    description2: "Desde USD 50.49",
-    description3: "S/. 201.66",
-    description4: "Vuelo directo. Tasas no incluidas",
+    image: "/img/paso1.jpg",
+    title: "Paso 1",
+    description: "Imprime tu etiqueta",
+    description2: "En la pantalla del kiosco de autoatención, escanea el código QR de tu tarjeta de embarque desde tu celular u hoja impresa. Una vez escaneado, se imprimirá la etiqueta de tu equipaje",
+    description3: "Solo imprimirá una etiqueta de equipaje a la vez",
+    description4: "Si necesitas imprimir más de una etiqueta, deberás repetir los pasos las veces que sea necesario.",
   },
   {
-    image: "/img/mancora.jpg",
-    title: "Mancora",
-    description: "Solo ida, económico",
-    description2: "Desde USD 50.49",
-    description3: "S/. 201.66",
-    description4: "Vuelo directo. Tasas no incluidas",
-  },
-  
-  {
-    image: "/img/mancora.jpg",
-    title: "Mancora",
-    description: "Solo ida, económico",
-    description2: "Desde USD 50.49",
-    description3: "S/. 201.66",
-    description4: "Vuelo directo. Tasas no incluidas",
+    image: "/img/paso2.webp",
+    title: "Paso 2",
+    description: "Etiqueta tu equipaje",
+    description2: "Toma la etiqueta, remueve el adhesivo y colócala en el asa o mango de tu equipaje. Recuerda pegar ambas caras de la etiqueta firmemente y guardar el adhesivo comprobante. Separa el código de barra y pégalo en la cara frontal de tu maleta.",
+    description3: "Retira la etiqueta de la impresora y voltéala, corta y guarda tu comprobante de equipaje",
+    description4: "Luego pega el adhesivo y separa el código de barra y finalmente pega el código de barra en la cara frontal de tu maleta",
   },
   
   {
-    image: "/img/mancora.jpg",
-    title: "Mancora",
-    description: "Solo ida, económico",
-    description2: "Desde USD 50.49",
-    description3: "S/. 201.66",
-    description4: "Vuelo directo. Tasas no incluidas",
+    image: "/img/paso3.jpg",
+    title: "Paso 3",
+    description: "Pesa tu equipaje",
+    description2: "Una vez etiquetado, pesa tu equipaje en las balanzas de los kioscos de autoatención.",
+    description3: "Si este pesa más de 23 kg, deberás dirigirte a los counters de Otros Servicios.",
+    description4: "",
+  },
+  
+  {
+    image: "/img/paso4.jpg",
+    title: "Paso 4",
+    description: "Despacha tu equipaje",
+    description2: "Coloca el equipaje en la cinta y cuando éste comience a desplazarse",
+    description3: "significa que ya puedes dirigirte a la puerta de embarque.",
+    description4: "¡Así de sencillo!",
   },
 ];
 
@@ -58,23 +58,22 @@ const Consejos = () => {
                   color: "white",
                 }}
               >
-                Hacemos que tu experiencia con nostros sea la mejor
+                Etiqueta, despacha y paga tu equipaje de bodega en pocos minutos ¡Hazlo tú mismo!
               </Typography>
             </Grid>
-            <Grid sx={{ flexGrow: 1 }} container xs={12} my={2}>
+            <Grid sx={{ flexGrow: 1 }} container xs={12} my={2} md={8}>
               <Typography
-                variant="h5"
+                variant="h7"
                 style={{
-                  fontFamily: "Raleway",
+                  /* fontFamily: "Raleway",
                   fontStyle: "normal",
                   fontWeight: "normal",
                   fontSize: "24px",
-                  lineHeight: "42px",
+                  lineHeight: "42px", */
                   color: "white",
                 }}
               >
-                Te hacemos llegar los mejores consejos para que este preparado
-                al momento de realizar tu vuelo.
+                Con el Etiquetado y Entrega de Equipaje Express los tiempos los manejas tú. Esta entrega de equipaje autogestionada forma parte de las nuevas tecnologías que a futuro irán digitalizando nuestros procesos en aeropuertos. Al etiquetar y despachar tú mismo el equipaje ahorrarás tiempo en las filas, esto hará que tu proceso sea mucho más rápido, autónomo y seguro.
               </Typography>
             </Grid>
             <Grid

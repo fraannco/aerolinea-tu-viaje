@@ -4,6 +4,7 @@ import {
   Routes,
   BrowserRouter as Router,
 } from 'react-router-dom';
+import Error404 from "./Components/Errorr404";
 import Navbar from './Components/Navbar';
 import FlightsProvider from "./context/flights/Provider";
 import AgendarCita from "./Views/AgendarCita/AgencarCita";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/asientos_vuelta/:cod_vuel" element={<SeleccionAsientos />} />
           <Route path="/ayuda" element={<Contacto />} />
           <Route path="/pago" element={<Pago />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
     </FlightsProvider>

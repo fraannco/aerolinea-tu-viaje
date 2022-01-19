@@ -84,7 +84,7 @@ const Asientos = () => {
           <Grid container>
             <Grid item xs={12} p={2}>
               <Typography variant="h5" style={{ fontStyle: "italic" }}>
-                {`Estado ${busquedaIdaVuelta},¡Elige el asiento que más te guste!`}
+                ¡Elige el asiento que más te guste!
               </Typography>
             </Grid>
             <Grid item bgcolor="#F8F8F8">

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Grid,
@@ -20,41 +20,32 @@ import {
   Stack,
   CircularProgress,
   Snackbar,
-} from "@mui/material";
-import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import BadgeIcon from "@mui/icons-material/Badge";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import MuiAlert from "@mui/material/Alert";
-import { green } from "@mui/material/colors";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
-import CheckIcon from "@mui/icons-material/Check";
-import Footer from "../../Components/Footer";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import BadgeIcon from '@mui/icons-material/Badge';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import MuiAlert from '@mui/material/Alert';
+import { green } from '@mui/material/colors';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import CheckIcon from '@mui/icons-material/Check';
+import Footer from '../../Components/Footer';
+import { Link } from 'react-router-dom';
 
-const Input = styled("input")({
-  display: "none",
+const Input = styled('input')({
+  display: 'none',
 });
 
 const LibroReclamos = () => {
   const [value, setValue] = React.useState(null);
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
-
   const [loadingDoc, setLoadingDoc] = React.useState(false);
   const [successDoc, setSuccessDoc] = React.useState(false);
-
   const [loadingImg, setLoadingImg] = React.useState(false);
   const [successImg, setSuccessImg] = React.useState(false);
   const timer = React.useRef();
@@ -65,27 +56,12 @@ const LibroReclamos = () => {
     };
   }, []);
 
-  const btnstyle = { margin: "8px 0" };
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const btnstyle = { margin: '8px 0' };
 
   const buttonSx = {
     ...(successDoc && {
       bgColor: green[500],
-      "&:hover": {
+      '&:hover': {
         bgColor: green[700],
       },
     }),
@@ -119,8 +95,8 @@ const LibroReclamos = () => {
 
   const [state, setState] = React.useState({
     open: false,
-    vertical: "top",
-    horizontal: "center",
+    vertical: 'top',
+    horizontal: 'center',
   });
 
   const { vertical, horizontal, open } = state;
@@ -140,35 +116,31 @@ const LibroReclamos = () => {
   };
 
   /*  ESTADO DE LOS INPUTS DEL FORMULARIO */
-  const [nombres, setNombres] = React.useState("");
+  const [nombres, setNombres] = React.useState('');
   const [errorNombre, setErrorNombre] = React.useState(true);
-  const [leyNombre, setLeyNombre] = React.useState("");
+  const [leyNombre, setLeyNombre] = React.useState('');
+  const changeNames = (val) => {
+    setNombres(val);
+  };
 
-  const [apellidos, setApellidos] = React.useState("");
+  const [apellidos, setApellidos] = React.useState('');
   const [errorApellidos, setErrorApellidos] = React.useState(false);
 
-  const [correo, setCorreo] = React.useState("");
+  const [correo, setCorreo] = React.useState('');
   const [errorCorreo, setErrorCorreo] = React.useState(false);
+  const [leyCorreo, setLeyCorreo] = React.useState(false);
 
-  const [contraseña, setContraseña] = React.useState("");
-  const [errorContraseña, setErrorContraseña] = React.useState(false);
-
-  const [conf, setConf] = React.useState("");
-  const [errorConf, setErrorConf] = React.useState(false);
-
-  const [dni, setDni] = React.useState("");
+  const [dni, setDni] = React.useState('');
   const [errorDni, setErrorDni] = React.useState(false);
+  const [leyDni, setLeyDni] = React.useState('');
 
-  const [genero, setGenero] = React.useState("");
-  const [errorGenero, setErrorGenero] = React.useState(false);
-
-  const [telefono, setTelefono] = React.useState("");
+  const [telefono, setTelefono] = React.useState('');
   const [errorTelefono, setErrorTelefono] = React.useState(false);
+  const [leyTel, setLeyTel] = React.useState('');
 
-  const [detalles, setDetalles] = React.useState("");
+  const [detalles, setDetalles] = React.useState('');
   const [errorDetalles, setErrorDetalles] = React.useState(false);
-
-  const [inputReclamo, setInputReclamo] = React.useState(false);
+  const [leyDetalle, setLeyDetalle] = React.useState('');
 
   return (
     <>
@@ -180,17 +152,17 @@ const LibroReclamos = () => {
           alignItems="center"
           p={5}
           my={5}
-          style={{ boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.05)" }}
+          style={{ boxShadow: '0px 8px 25px rgba(0, 0, 0, 0.05)' }}
         >
           <Grid item xs={12}>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "bold",
-                fontSize: "36px",
-                lineHeight: "52px",
-                color: "#3F51B5",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontSize: '36px',
+                lineHeight: '52px',
+                color: '#3F51B5',
               }}
             >
               Libro de reclamaciones
@@ -198,12 +170,12 @@ const LibroReclamos = () => {
 
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
               my={1}
             >
@@ -211,12 +183,12 @@ const LibroReclamos = () => {
             </Typography>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
             >
               Le recordamos que este canal es solo para reclamos o quejas.
@@ -224,24 +196,24 @@ const LibroReclamos = () => {
 
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "bold",
-                fontSize: "24px",
-                lineHeight: "52px",
-                color: "#5063F8",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontSize: '24px',
+                lineHeight: '52px',
+                color: '#5063F8',
               }}
             >
               Datos personales
             </Typography>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
               my={1}
             >
@@ -249,12 +221,12 @@ const LibroReclamos = () => {
             </Typography>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
             >
               Los utilizaremos para el reclamo correspondiente.
@@ -265,12 +237,12 @@ const LibroReclamos = () => {
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Nombres
@@ -279,13 +251,14 @@ const LibroReclamos = () => {
           <Grid item xs={12} sm={6} p={2}>
             <TextField
               onChange={(e) => {
-                setNombres(e.target.value);
-                if (nombres.length == 0) {
+                changeNames(e.target.value);
+                console.log('SetNombre: ', nombres);
+                if (nombres.length === -1) {
                   setErrorNombre(true);
-                  setLeyNombre("Cmapo vacío. Digite sus nombres.");
+                  setLeyNombre('Cmapo vacío. Digite sus nombres.');
                 } else {
                   setErrorNombre(false);
-                  setLeyNombre("");
+                  setLeyNombre('');
                 }
               }}
               error={errorNombre}
@@ -303,17 +276,16 @@ const LibroReclamos = () => {
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Apellidos
@@ -335,17 +307,16 @@ const LibroReclamos = () => {
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Correo
@@ -353,12 +324,24 @@ const LibroReclamos = () => {
           </Grid>
           <Grid item xs={12} sm={6} p={2}>
             <TextField
-              error
+              onChange={(e) => {
+                setCorreo(e.target.value);
+
+                if (!correo.includes('@')) {
+                  setErrorCorreo(true);
+                  setLeyCorreo('Formato incorrecto.');
+                } else {
+                  setErrorCorreo(false);
+                  setLeyCorreo('');
+                }
+              }}
+              error={errorCorreo}
+              helperText={leyCorreo}
               id="outlined-error"
               label="Correo"
               placeholder="Digite su correo electrónico..."
               fullWidth
-              type={"email"}
+              type="email"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -368,17 +351,16 @@ const LibroReclamos = () => {
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Documento de identidad
@@ -386,7 +368,19 @@ const LibroReclamos = () => {
           </Grid>
           <Grid item xs={12} sm={6} p={2}>
             <TextField
-              error
+              onChange={(e) => {
+                setDni(e.target.value);
+
+                if (dni.length != 7) {
+                  setErrorDni(true);
+                  setLeyDni('El DNI debe tener 8 dígitos.');
+                } else {
+                  setErrorDni(false);
+                  setLeyDni('');
+                }
+              }}
+              error={errorDni}
+              helperText={leyDni}
               id="outlined-error"
               label="DNI"
               placeholder="Digite el número de DNI"
@@ -400,17 +394,16 @@ const LibroReclamos = () => {
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Género
@@ -431,17 +424,16 @@ const LibroReclamos = () => {
               />
             </RadioGroup>
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Fecha de nacimiento
@@ -460,17 +452,16 @@ const LibroReclamos = () => {
               />
             </LocalizationProvider>
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Teléfono
@@ -478,11 +469,24 @@ const LibroReclamos = () => {
           </Grid>
           <Grid item xs={12} sm={6} p={2}>
             <TextField
-              error
+              onChange={(e) => {
+                setTelefono(e.target.value);
+
+                if (telefono.length != 8) {
+                  setErrorTelefono(true);
+                  setLeyTel('Su teléfono debe tener 9 dígitos.');
+                } else {
+                  setErrorTelefono(false);
+                  setLeyTel('');
+                }
+              }}
+              type="number"
+              error={errorTelefono}
               id="outlined-error"
               label="Teléfono"
               placeholder="Digite su teléfono..."
               fullWidth
+              helperText={leyTel}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -492,40 +496,39 @@ const LibroReclamos = () => {
               }}
             />
           </Grid>
-
           <Grid item xs={12}>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "bold",
-                fontSize: "24px",
-                lineHeight: "52px",
-                color: "#5063F8",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontSize: '24px',
+                lineHeight: '52px',
+                color: '#5063F8',
               }}
             >
               Datos del reclamo
             </Typography>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
             >
               Ingresa tus datos tal como aparecen en tu documento de identidad.
             </Typography>
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "500",
-                fontSize: "12px",
-                lineHeight: "12px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '12px',
+                lineHeight: '12px',
+                color: 'black',
               }}
             >
               Los utilizaremos para el reclamo correspondiente.
@@ -533,12 +536,12 @@ const LibroReclamos = () => {
 
             <Typography
               style={{
-                fontFamily: "Raleway",
-                fontStyle: "normal",
-                fontWeight: "bold",
-                fontSize: "20px",
-                lineHeight: "52px",
-                color: "black",
+                fontFamily: 'Raleway',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontSize: '20px',
+                lineHeight: '52px',
+                color: 'black',
               }}
             >
               Detalles del reclamo
@@ -550,26 +553,34 @@ const LibroReclamos = () => {
               defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
       ut labore et dolore magna aliqua."
               style={{ width: 650 }}
+              onChange={(e) => {
+                setDetalles(e.target.value);
+                if (detalles.length < 20) {
+                  setErrorDetalles(true);
+                  setLeyDetalle('Debe tener 20 mínimo carácteres.');
+                } else {
+                  setErrorDetalles(false);
+                  setLeyDetalle('');
+                }
+              }}
             />
           </Grid>
-
           {/*CONTINUAR CON LOS DEMÁS DATOS DEL RECLAMO */}
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Imágenes
             </Typography>
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <Stack direction="row" alignItems="center">
               <label htmlFor="contained-button-file">
@@ -593,11 +604,11 @@ const LibroReclamos = () => {
                     size={24}
                     sx={{
                       color: green[500],
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      marginTop: "-12px",
-                      marginLeft: "-12px",
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      marginTop: '-12px',
+                      marginLeft: '-12px',
                     }}
                   />
                 )}
@@ -616,7 +627,7 @@ const LibroReclamos = () => {
                       size={68}
                       sx={{
                         color: green[500],
-                        position: "absolute",
+                        position: 'absolute',
                         top: -6,
                         left: -6,
                         zIndex: 1,
@@ -632,12 +643,12 @@ const LibroReclamos = () => {
             <Typography
               mt={2}
               style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+                fontFamily: 'Roboto',
+                fontStyle: 'initial',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                lineHeight: '18px',
+                color: 'black',
               }}
             >
               Documentos
@@ -645,62 +656,62 @@ const LibroReclamos = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Stack direction="row" alignItems="center" p={4}>
-              <label htmlFor="contained-button-file">
-                <Input
-                  accept="image/*"
-                  id="contained-button-file"
-                  multiple
-                  type="file"
+            {/* <Stack direction="row" alignItems="center" p={4}> */}
+            <label htmlFor="contained-button-file">
+              <Input
+                accept="image/*"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <Button
+                variant="contained"
+                component="span"
+                onClick={handleButtonClickDoc}
+                disabled={loadingDoc}
+                sx={buttonSx}
+              >
+                Subir documentos
+              </Button>
+              {loadingDoc && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    color: green[500],
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-12px',
+                    marginLeft: '-12px',
+                  }}
                 />
-                <Button
-                  variant="contained"
-                  component="span"
-                  onClick={handleButtonClickDoc}
-                  disabled={loadingDoc}
-                  sx={buttonSx}
-                >
-                  Subir documentos
-                </Button>
+              )}
+            </label>
+            <label htmlFor="icon-button-file">
+              <Input accept="image/*" id="icon-button-file" type="file" />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+                onClick={handleButtonClickDoc}
+              >
+                {successDoc ? <CheckIcon /> : <CloudUploadIcon />}
+
                 {loadingDoc && (
                   <CircularProgress
-                    size={24}
+                    size={68}
                     sx={{
                       color: green[500],
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      marginTop: "-12px",
-                      marginLeft: "-12px",
+                      position: 'absolute',
+                      top: -6,
+                      left: -6,
+                      zIndex: 1,
                     }}
                   />
                 )}
-              </label>
-              <label htmlFor="icon-button-file">
-                <Input accept="image/*" id="icon-button-file" type="file" />
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                  onClick={handleButtonClickDoc}
-                >
-                  {successDoc ? <CheckIcon /> : <CloudUploadIcon />}
-
-                  {loadingDoc && (
-                    <CircularProgress
-                      size={68}
-                      sx={{
-                        color: green[500],
-                        position: "absolute",
-                        top: -6,
-                        left: -6,
-                        zIndex: 1,
-                      }}
-                    />
-                  )}
-                </IconButton>
-              </label>
-            </Stack>
+              </IconButton>
+            </label>
+            {/* </Stack> */}
           </Grid>
 
           <Grid item xs={12}>
@@ -720,37 +731,66 @@ const LibroReclamos = () => {
               variant="contained"
               style={btnstyle}
               fullWidth
-              onClick={
-                handleClick({
-                  vertical: "top",
-                  horizontal: "center",
-                })
-              }
+              onClick={handleClick({
+                vertical: 'top',
+                horizontal: 'center',
+              })}
             >
-              <Link to="/" onClick={() => {
-                if(apellidos.length === 0){
-                  setErrorApellidos(true)
-                }
-              }}>ENVIAR</Link>
+              <Link
+                to="/"
+                onClick={() => {
+                  if (apellidos.length === 0) {
+                    setErrorApellidos(true);
+                  }
+                }}
+              >
+                <Typography
+                  style={{
+                    color: 'white',
+                  }}
+                >
+                  ENVIAR
+                </Typography>
+              </Link>
             </Button>
           </Grid>
         </Grid>
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={open}
-          autoHideDuration={3000}
-          message=" Atenderemos su reclamo a la brevedad!"
-          onClose={handleClose}
-          key={vertical + horizontal}
-        >
-          <Alert
+
+        {!errorCorreo && !errorDni && !errorTelefono && !errorDetalles ? (
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            autoHideDuration={3000}
+            message=" Atenderemos su reclamo a la brevedad!"
             onClose={handleClose}
-            severity="success"
-            sx={{ width: "100%" }}
+            key={vertical + horizontal}
           >
-            Atenderemos su reclamo a la brevedad!
-          </Alert>
-        </Snackbar>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              sx={{ width: '100%' }}
+            >
+              Atenderemos su reclamo a la brevedad!
+            </Alert>
+          </Snackbar>
+        ) : (
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            key={vertical + horizontal}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="error"
+              sx={{ width: '100%' }}
+            >
+              Ocurrió un error. Verifique los campos.
+            </Alert>
+          </Snackbar>
+        )}
+
         <Footer />
       </Container>
     </>

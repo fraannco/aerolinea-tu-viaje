@@ -111,7 +111,6 @@ const Result = ({ arrival, departure, airline, flight }) => {
       </Grid>
       <Grid item xs={12} justify="center" align="center" p={1}>
         <Box>
-          <p>{`VALOR DE vueloSeleccionado: ${vueloSeleccionado.length}`}</p>
           <Button
             size="large"
             variant="outlined"
@@ -126,7 +125,7 @@ const Result = ({ arrival, departure, airline, flight }) => {
               }
               style={{ textDecoration: "none" }}
             >
-              {`Seleccionar busquedaIdaVuelta: ${busquedaIdaVuelta}, n: ${vueloSeleccionado.length}`}
+              Seleccionar
             </Link>
           </Button>
         </Box>

@@ -41,14 +41,13 @@ const MediaCard = ({
                 className={classes.media}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5">
                   {title}
                 </Typography>
                 <Typography
                   gutterBottom
-                  variant="body2"
+                  variant="subtitle2"
                   color="textScondary"
-                  component="p"
                 >
                   {description}
                 </Typography>

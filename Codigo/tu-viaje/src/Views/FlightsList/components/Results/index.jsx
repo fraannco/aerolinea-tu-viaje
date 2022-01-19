@@ -38,7 +38,7 @@ const Results = ({ serachText }) => {
               </Typography>
             ) : (
               <Typography variant="h6" ml={2}>
-                Elige un vuelo de vuela
+                Elige un vuelo de vuelta
               </Typography>
             )}
           </Box>

@@ -39,11 +39,14 @@ const Searchbox = () => {
     vueloSeleccionado,
     fechas,
     setVueloSeleccionado,
+    setAsiendosSelecionados,
+    asiendosSelecionados
   } = useContext(FlightsContext);
 
   const handleClick = (e) => {
-    if (vueloSeleccionado.length > 0) {
+    if (vueloSeleccionado.length > 0 || asiendosSelecionados > 0) {
       setVueloSeleccionado([]);
+      setAsiendosSelecionados([])
     }
     setBusquedaIda(destino)
     setBusquedaVuelta(origen)
@@ -53,7 +56,6 @@ const Searchbox = () => {
   return (
     <div>
       <form>
-        {`estado: ${busquedaIdaVuelta}`}
         {busquedaIdaVuelta ? (
           <Grid container alignItems="left">
             <Grid item xs={12} md={12} sm={12}>
