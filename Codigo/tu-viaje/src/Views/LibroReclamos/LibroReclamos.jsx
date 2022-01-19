@@ -18,8 +18,15 @@ import {
   Container,
   styled,
   Stack,
+  CircularProgress,
+  Snackbar,
 } from "@mui/material";
-
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import BadgeIcon from "@mui/icons-material/Badge";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import MuiAlert from "@mui/material/Alert";
+import { green } from "@mui/material/colors";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Visibility from "@mui/icons-material/Visibility";
@@ -27,6 +34,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
+import CheckIcon from "@mui/icons-material/Check";
+import Footer from "../../Components/Footer";
+import { Link } from "react-router-dom";
+
 const Input = styled("input")({
   display: "none",
 });
@@ -40,6 +51,21 @@ const LibroReclamos = () => {
     weightRange: "",
     showPassword: false,
   });
+
+  const [loadingDoc, setLoadingDoc] = React.useState(false);
+  const [successDoc, setSuccessDoc] = React.useState(false);
+
+  const [loadingImg, setLoadingImg] = React.useState(false);
+  const [successImg, setSuccessImg] = React.useState(false);
+  const timer = React.useRef();
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const btnstyle = { margin: "8px 0" };
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -56,6 +82,94 @@ const LibroReclamos = () => {
     event.preventDefault();
   };
 
+  const buttonSx = {
+    ...(successDoc && {
+      bgColor: green[500],
+      "&:hover": {
+        bgColor: green[700],
+      },
+    }),
+  };
+
+  const handleButtonClickDoc = () => {
+    if (!loadingDoc) {
+      setSuccessDoc(false);
+      setLoadingDoc(true);
+      timer.current = window.setTimeout(() => {
+        setSuccessDoc(true);
+        setLoadingDoc(false);
+      }, 4000);
+    }
+  };
+
+  const handleButtonClickImg = () => {
+    if (!loadingImg) {
+      setSuccessImg(false);
+      setLoadingImg(true);
+      timer.current = window.setTimeout(() => {
+        setSuccessImg(true);
+        setLoadingImg(false);
+      }, 4000);
+    }
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState) => () => {
+    setState({
+      open: true,
+      ...newState,
+    });
+  };
+
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    });
+  };
+
+  /*  ESTADO DE LOS INPUTS DEL FORMULARIO */
+  const [nombres, setNombres] = React.useState("");
+  const [errorNombre, setErrorNombre] = React.useState(true);
+  const [leyNombre, setLeyNombre] = React.useState("");
+
+  const [apellidos, setApellidos] = React.useState("");
+  const [errorApellidos, setErrorApellidos] = React.useState(false);
+
+  const [correo, setCorreo] = React.useState("");
+  const [errorCorreo, setErrorCorreo] = React.useState(false);
+
+  const [contraseña, setContraseña] = React.useState("");
+  const [errorContraseña, setErrorContraseña] = React.useState(false);
+
+  const [conf, setConf] = React.useState("");
+  const [errorConf, setErrorConf] = React.useState(false);
+
+  const [dni, setDni] = React.useState("");
+  const [errorDni, setErrorDni] = React.useState(false);
+
+  const [genero, setGenero] = React.useState("");
+  const [errorGenero, setErrorGenero] = React.useState(false);
+
+  const [telefono, setTelefono] = React.useState("");
+  const [errorTelefono, setErrorTelefono] = React.useState(false);
+
+  const [detalles, setDetalles] = React.useState("");
+  const [errorDetalles, setErrorDetalles] = React.useState(false);
+
+  const [inputReclamo, setInputReclamo] = React.useState(false);
+
   return (
     <>
       <Container>
@@ -64,9 +178,9 @@ const LibroReclamos = () => {
           direccion="row"
           justifyContent="center"
           alignItems="center"
-          spacing={3}
-          p={1}
-          sx={{ border: "1px solid black", width: "700px", mx: "auto" }}
+          p={5}
+          my={5}
+          style={{ boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.05)" }}
         >
           <Grid item xs={12}>
             <Typography
@@ -74,7 +188,7 @@ const LibroReclamos = () => {
                 fontFamily: "Raleway",
                 fontStyle: "normal",
                 fontWeight: "bold",
-                fontSize: "24px",
+                fontSize: "36px",
                 lineHeight: "52px",
                 color: "#3F51B5",
               }}
@@ -91,6 +205,7 @@ const LibroReclamos = () => {
                 lineHeight: "12px",
                 color: "black",
               }}
+              my={1}
             >
               Gracias por su interés de comunicarse con nosotros.
             </Typography>
@@ -112,7 +227,7 @@ const LibroReclamos = () => {
                 fontFamily: "Raleway",
                 fontStyle: "normal",
                 fontWeight: "bold",
-                fontSize: "18px",
+                fontSize: "24px",
                 lineHeight: "52px",
                 color: "#5063F8",
               }}
@@ -128,6 +243,7 @@ const LibroReclamos = () => {
                 lineHeight: "12px",
                 color: "black",
               }}
+              my={1}
             >
               Ingresa tus datos tal como aparecen en tu documento de identidad.
             </Typography>
@@ -160,17 +276,34 @@ const LibroReclamos = () => {
               Nombres
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <TextField
-              Digite
-              sus
-              nombres
-              id="outlined-error"
+              onChange={(e) => {
+                setNombres(e.target.value);
+                if (nombres.length == 0) {
+                  setErrorNombre(true);
+                  setLeyNombre("Cmapo vacío. Digite sus nombres.");
+                } else {
+                  setErrorNombre(false);
+                  setLeyNombre("");
+                }
+              }}
+              error={errorNombre}
+              // id="outlined-error"
               label="Nombres"
               placeholder="Digite su nombre completo"
               fullWidth
+              helperText={leyNombre}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountBoxIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <Typography
               mt={2}
@@ -186,13 +319,20 @@ const LibroReclamos = () => {
               Apellidos
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <TextField
-              error
+              error={errorApellidos}
               id="outlined-error"
               label="Apellidos"
               placeholder="Digite sus apellidos completos..."
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountBoxIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
 
@@ -211,97 +351,21 @@ const LibroReclamos = () => {
               Correo
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <TextField
               error
               id="outlined-error"
               label="Correo"
               placeholder="Digite su correo electrónico..."
               fullWidth
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Typography
-              mt={2}
-              style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
+              type={"email"}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ContactMailIcon />
+                  </InputAdornment>
+                ),
               }}
-            >
-              Contraseña
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <InputLabel htmlFor="outlined-adornment-password">
-              Contraseña
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              fullWidth
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <Typography
-              mt={2}
-              style={{
-                fontFamily: "Roboto",
-                fontStyle: "initial",
-                fontWeight: "bold",
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "black",
-              }}
-            >
-              Confirmar contraseña
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <InputLabel htmlFor="outlined-adornment-password">
-              Confirmar contraseña
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              fullWidth
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
             />
           </Grid>
 
@@ -320,13 +384,20 @@ const LibroReclamos = () => {
               Documento de identidad
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <TextField
               error
               id="outlined-error"
               label="DNI"
               placeholder="Digite el número de DNI"
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BadgeIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
 
@@ -345,7 +416,7 @@ const LibroReclamos = () => {
               Género
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <FormLabel component="legend">Género</FormLabel>
             <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
               <FormControlLabel
@@ -376,7 +447,7 @@ const LibroReclamos = () => {
               Fecha de nacimiento
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Elija una fecha"
@@ -405,13 +476,20 @@ const LibroReclamos = () => {
               Teléfono
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} p={2}>
             <TextField
               error
               id="outlined-error"
               label="Teléfono"
               placeholder="Digite su teléfono..."
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ContactPhoneIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
 
@@ -421,7 +499,7 @@ const LibroReclamos = () => {
                 fontFamily: "Raleway",
                 fontStyle: "normal",
                 fontWeight: "bold",
-                fontSize: "18px",
+                fontSize: "24px",
                 lineHeight: "52px",
                 color: "#5063F8",
               }}
@@ -493,7 +571,7 @@ const LibroReclamos = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Stack direction="row" alignItems="center" spacing={2}>
+            <Stack direction="row" alignItems="center">
               <label htmlFor="contained-button-file">
                 <Input
                   accept="image/*"
@@ -501,9 +579,28 @@ const LibroReclamos = () => {
                   multiple
                   type="file"
                 />
-                <Button variant="contained" component="span">
+                <Button
+                  variant="contained"
+                  component="span"
+                  onClick={handleButtonClickImg}
+                  disabled={loadingImg}
+                  sx={buttonSx}
+                >
                   Subir imágenes
                 </Button>
+                {loadingImg && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      marginTop: "-12px",
+                      marginLeft: "-12px",
+                    }}
+                  />
+                )}
               </label>
               <label htmlFor="icon-button-file">
                 <Input accept="image/*" id="icon-button-file" type="file" />
@@ -511,8 +608,21 @@ const LibroReclamos = () => {
                   color="primary"
                   aria-label="upload picture"
                   component="span"
+                  onClick={handleButtonClickImg}
                 >
-                  <PhotoCamera />
+                  {successImg ? <CheckIcon /> : <PhotoCamera />}
+                  {loadingImg && (
+                    <CircularProgress
+                      size={68}
+                      sx={{
+                        color: green[500],
+                        position: "absolute",
+                        top: -6,
+                        left: -6,
+                        zIndex: 1,
+                      }}
+                    />
+                  )}
                 </IconButton>
               </label>
             </Stack>
@@ -535,7 +645,7 @@ const LibroReclamos = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Stack direction="row" alignItems="center" spacing={2}>
+            <Stack direction="row" alignItems="center" p={4}>
               <label htmlFor="contained-button-file">
                 <Input
                   accept="image/*"
@@ -543,9 +653,28 @@ const LibroReclamos = () => {
                   multiple
                   type="file"
                 />
-                <Button variant="contained" component="span">
+                <Button
+                  variant="contained"
+                  component="span"
+                  onClick={handleButtonClickDoc}
+                  disabled={loadingDoc}
+                  sx={buttonSx}
+                >
                   Subir documentos
                 </Button>
+                {loadingDoc && (
+                  <CircularProgress
+                    size={24}
+                    sx={{
+                      color: green[500],
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      marginTop: "-12px",
+                      marginLeft: "-12px",
+                    }}
+                  />
+                )}
               </label>
               <label htmlFor="icon-button-file">
                 <Input accept="image/*" id="icon-button-file" type="file" />
@@ -553,8 +682,22 @@ const LibroReclamos = () => {
                   color="primary"
                   aria-label="upload picture"
                   component="span"
+                  onClick={handleButtonClickDoc}
                 >
-                  <CloudUploadIcon />
+                  {successDoc ? <CheckIcon /> : <CloudUploadIcon />}
+
+                  {loadingDoc && (
+                    <CircularProgress
+                      size={68}
+                      sx={{
+                        color: green[500],
+                        position: "absolute",
+                        top: -6,
+                        left: -6,
+                        zIndex: 1,
+                      }}
+                    />
+                  )}
                 </IconButton>
               </label>
             </Stack>
@@ -568,7 +711,47 @@ const LibroReclamos = () => {
               />
             </FormGroup>
           </Grid>
+
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              color="primary"
+              size="large"
+              variant="contained"
+              style={btnstyle}
+              fullWidth
+              onClick={
+                handleClick({
+                  vertical: "top",
+                  horizontal: "center",
+                })
+              }
+            >
+              <Link to="/" onClick={() => {
+                if(apellidos.length === 0){
+                  setErrorApellidos(true)
+                }
+              }}>ENVIAR</Link>
+            </Button>
+          </Grid>
         </Grid>
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={open}
+          autoHideDuration={3000}
+          message=" Atenderemos su reclamo a la brevedad!"
+          onClose={handleClose}
+          key={vertical + horizontal}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Atenderemos su reclamo a la brevedad!
+          </Alert>
+        </Snackbar>
+        <Footer />
       </Container>
     </>
   );

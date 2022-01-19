@@ -19,8 +19,8 @@ const FlightsProvider = ({ children }) => {
   const [titularTarjeta, setTitularTarjeta] = useState("");
 
   const [usuario, setUsuario] = useState({
-    correo: "franco@gmail.com",
-    password: "franco@gmail.com",
+    correo: "alexander@gmail.com",
+    password: "alexander@gmail.com",
     estadoSesion: false
   })
 
@@ -54,9 +54,22 @@ const FlightsProvider = ({ children }) => {
         setBusquedaIda,
         busquedaVuelta,
         setBusquedaVuelta,
-        nombres, setNombres, direccion, setDireccion, dni, setDNI,
-        pais, setPais, provinciaRegion, setProvinciaRegion, titularTarjeta, setTitularTarjeta,
-        apellidos, setApellidos
+        nombres, 
+        setNombres, 
+        direccion, 
+        setDireccion, 
+        dni, 
+        setDNI,
+        pais, 
+        setPais, 
+        provinciaRegion,
+        setProvinciaRegion,
+        titularTarjeta,
+        setTitularTarjeta,
+        apellidos,
+        setApellidos,
+        usuario,
+        setUsuario
       }}
     >
       {children}

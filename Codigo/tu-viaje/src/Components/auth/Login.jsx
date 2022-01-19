@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Grid,
-  Link,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import FlightsContext from "../../context/flights/index";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { usuario, setUsuario } = React.useContext(FlightsContext);
 
   const paperStyle = {
     padding: 20,
@@ -84,21 +82,35 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              size="large"
-              style={btnstyle}
-              fullWidth
+            <Link
+              to="/"
+              onClick={() => {
+                if (email === usuario.correo && password === usuario.password) {
+                  setUsuario({
+                    correo: "alexander@gmail.com",
+                    password: "alexander@gmail.com",
+                    estadoSesion: true,
+                  });
+                } else
+                  alert("El usuario o contraseña ingresados son incorrectos");
+              }}
             >
-              Iniciar Sesión
-            </Button>
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                size="large"
+                style={btnstyle}
+                fullWidth
+              >
+                Iniciar Sesión
+              </Button>
+            </Link>
           </form>
         </Grid>
         <Grid p={2} align="right">
           <Typography>
-            <Link href="#">¿Olvidaste tu contraseña?</Link>
+            <Link to="/register">¿Olvidaste tu contraseña?</Link>
           </Typography>
         </Grid>
         <Grid p={2}>
@@ -110,15 +122,17 @@ const Login = () => {
             style={btnstyle}
             fullWidth
           >
-            Crear cuenta
+            <Link to="register">Crear cuenta</Link>
           </Button>
         </Grid>
         <Grid align="center">
           <Typography color="#757575">
             Al continuar, acepta los{" "}
-            <Link style={{ textDecoration: "none" }}>Términos de uso</Link> y
-            conoce la{" "}
-            <Link style={{ textDecoration: "none" }}>
+            <Link to="register" style={{ textDecoration: "none" }}>
+              Términos de uso
+            </Link>{" "}
+            y conoce la{" "}
+            <Link to="register" style={{ textDecoration: "none" }}>
               Política de privacidad
             </Link>
             .

@@ -9,16 +9,20 @@ import {
   MenuItem,
 } from "@mui/material";
 
-import React from "react";
+import React, { useContext } from "react";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import FlightContext from "../context/flights/index"
 
 const pages = ["Iniciar sesion", "Ayuda", "Agendar cita"];
-const path = ["/login","/ayuda","/agendar-cita"]
+const path = ["/login", "/ayuda", "/agendar-cita"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
+
+  const {usuario} = useContext(FlightContext)
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -30,26 +34,30 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static" color="transparent" style={{boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.05)"}}>
+    <AppBar
+      position="static"
+      color="transparent"
+      style={{ boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.05)" }}
+    >
       <Toolbar disableGutters>
-      <Link style={{textDecoration: "none"}} to="/">
-        <Typography
-          ml={4}
-          variant="h7"
-          noWrap
-          component="div"
-          fontFamily="Cronos Pro"
-          fontWeight="bolder"
-          fontStyle="normal"
-          sx={{
-            mr: 1,
-            display: { xs: "none", md: "flex" },
-            color: "#3F51B5",
-          }}
-          fontSize="36px"
-        >
+        <Link style={{ textDecoration: "none" }} to="/">
+          <Typography
+            ml={4}
+            variant="h7"
+            noWrap
+            component="div"
+            fontFamily="Cronos Pro"
+            fontWeight="bolder"
+            fontStyle="normal"
+            sx={{
+              mr: 1,
+              display: { xs: "none", md: "flex" },
+              color: "#3F51B5",
+            }}
+            fontSize="36px"
+          >
             tu-viaje
-        </Typography>
+          </Typography>
         </Link>
 
         <Box
@@ -61,17 +69,30 @@ const Navbar = () => {
             flexDirection: { md: "row-reverse" },
           }}
         >
-          {pages.map((page, index) => (
-            <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block", ml: 3 }}
-            >
-              <Link to={path[index]} style={{textDecoration: "none"}}>
-                {page}
-              </Link>
-            </Button>
-          ))}
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "black", display: "block", ml: 3 }}
+          >
+            <Link to={(usuario.estadoSesion) ? `/mis-vuelos` : `/login`} style={{ textDecoration: "none" }}>
+              {(usuario.estadoSesion) ? `Mis vuelos` : `Inciar sesión`}
+            </Link>
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "black", display: "block", ml: 3 }}
+          >
+            <Link to="/agendar-cita" style={{ textDecoration: "none" }}>
+              Agendar cita
+            </Link>
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "black", display: "block", ml: 3 }}
+          >
+            <Link to="/ayuda" style={{ textDecoration: "none" }}>
+              Ayuda
+            </Link>
+          </Button>
         </Box>
 
         <Box
@@ -107,11 +128,15 @@ const Navbar = () => {
               display: { xs: "block", md: "none" },
             }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
-              </MenuItem>
-            ))}
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">1234</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">adfgasdfg</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">zxcbxcvzxcv</Typography>
+            </MenuItem>
           </Menu>
         </Box>
 

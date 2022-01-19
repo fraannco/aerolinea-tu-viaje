@@ -11,17 +11,15 @@ const Item = styled(Paper)(({ theme }) => ({
 const AgendarCita = () => {
   return (
     <>
-      <Box component="form" sx={{ backgroundColor: "#F8F8F8" }}>
+      <Box component="form">
         <Grid
           container
           p={5}
           direction="row"
           justifyContent="space-evenly"
           alignItems="center"
-          spacing={3}
-          mt={10}
         >
-          <Grid item xs={12} md={7} backgroundColor="#F8F8F8">
+          <Grid item xs={12} md={7}  p={2}>
             <Item>
               <Typography
                 mb={3}
@@ -37,7 +35,7 @@ const AgendarCita = () => {
                 ¿Para qué agendar una cita?
               </Typography>
               <img
-                src={"/img/agendarCita.svg"}
+                src={"/img/agendarCita.jpg"}
                 alt={"imagen referencial para agendar cita"}
                 loading="lazy"
                 width="100%"
