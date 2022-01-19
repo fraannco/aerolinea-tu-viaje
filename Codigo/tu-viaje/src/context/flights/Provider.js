@@ -4,18 +4,30 @@ import apiCall from "../../api";
 
 const FlightsProvider = ({ children }) => {
   const [flights, setFlights] = useState([]);
-  const [textosBuscados, setTextosBuscados] = useState([]);
+  const [busquedaIda, setBusquedaIda] = useState("");
+  const [busquedaVuelta, setBusquedaVuelta] = useState("");
   const [fechas, setFechas] = useState([]);
-  const [nroPasajeros, setNroPasajeros] = useState(0)
   const [busquedaIdaVuelta, setBusquedaIdaVuelta] = useState(true);
   const [vueloSeleccionado, setVueloSeleccionado] = useState([]);
-  const [assientosSeleccionado, setAsiendosSelecionado] = useState([]);
-  const [equipaje, setEquipaje] = useState([]);
-  
+  const [asientosSeleccionados, setAsiendosSelecionados] = useState([]);
+  const [nombres, setNombres] = useState("");
+  const [apellidos, setApellidos] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [dni, setDNI] = useState("");
+  const [pais, setPais] = useState("");
+  const [provinciaRegion, setProvinciaRegion] = useState("");
+  const [titularTarjeta, setTitularTarjeta] = useState("");
+
+  const [usuario, setUsuario] = useState({
+    correo: "franco@gmail.com",
+    password: "franco@gmail.com",
+    estadoSesion: false
+  })
+
   const getFlights = async () => {
     try {
       const flightsResult = await apiCall({
-        url: "http://api.aviationstack.com/v1/flights?access_key=fc6605d725b4d52e71897c7b2d7c85a5"
+        url: "http://api.aviationstack.com/v1/flights?access_key=50af21beeab3804558d35964608f282a"
       });
       setFlights(flightsResult.data);
     } catch (error) {
@@ -32,18 +44,19 @@ const FlightsProvider = ({ children }) => {
         setVueloSeleccionado,
         getFlights,
         flights,
-        textosBuscados,
         fechas,
         setFechas,
-        setTextosBuscados,
         busquedaIdaVuelta,
-        assientosSeleccionado, 
-        setAsiendosSelecionado,
+        asientosSeleccionados,
+        setAsiendosSelecionados,
         setBusquedaIdaVuelta,
-        equipaje,
-        setEquipaje,
-        nroPasajeros, 
-        setNroPasajeros
+        busquedaIda,
+        setBusquedaIda,
+        busquedaVuelta,
+        setBusquedaVuelta,
+        nombres, setNombres, direccion, setDireccion, dni, setDNI,
+        pais, setPais, provinciaRegion, setProvinciaRegion, titularTarjeta, setTitularTarjeta,
+        apellidos, setApellidos
       }}
     >
       {children}

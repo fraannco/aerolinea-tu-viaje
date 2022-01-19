@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 import FlightsContext from "../../../context/flights";
 
 const Asientos = () => {
+  const { busquedaIdaVuelta, vueloSeleccionado, asientosSeleccionados, setBusquedaIdaVuelta } =
+    useContext(FlightsContext);
 
-  const {busquedaIdaVuelta, setBusquedaIdaVuelta, vueloSeleccionado, assientosSeleccionado} = useContext(FlightsContext)
+  if(vueloSeleccionado.length===2 && asientosSeleccionados.length === 0)
+    setBusquedaIdaVuelta(true)
+  else
+    setBusquedaIdaVuelta(false)
 
   const asientos = [
     "A01",
@@ -72,18 +77,14 @@ const Asientos = () => {
     "A60",
   ];
 
-  if(vueloSeleccionado.length > 1 && assientosSeleccionado.length===1) setBusquedaIdaVuelta(true)
-  else setBusquedaIdaVuelta(false)
-  console.log(busquedaIdaVuelta)
-
   return (
-    <Grid>
+    <Grid container>
       <Grid item>
         <Box>
           <Grid container>
             <Grid item xs={12} p={2}>
               <Typography variant="h5" style={{ fontStyle: "italic" }}>
-                ¡Elige el asiento que más te guste!
+                {`Estado ${busquedaIdaVuelta},¡Elige el asiento que más te guste!`}
               </Typography>
             </Grid>
             <Grid item bgcolor="#F8F8F8">
@@ -97,19 +98,21 @@ const Asientos = () => {
                             style={{ color: "#fff" }}
                           />
                         </Box>
-                        <Button fullWidth variant="outlined" >
+                        <Button
+                          fullWidth
+                          variant="outlined"
+                          onClick={() => {
+                            asientosSeleccionados.push({
+                              asiento: value,
+                            });
+                          }}
+                        >
                           <Link
                             to={
                               busquedaIdaVuelta
                                 ? `/asientos_vuelta/${vueloSeleccionado[1].codigoVuelo}`
-                                : `/pago/`
+                                : `/pago`
                             }
-                            onClick={() => {
-                              assientosSeleccionado.push({
-                                asiento: value,
-                              })
-                              console.log(assientosSeleccionado)
-                            }}
                             style={{ textDecoration: "none" }}
                           >
                             <Typography variant="subtitle1">{value}</Typography>

@@ -1,17 +1,12 @@
 import React from "react";
-import { Grid } from "@mui/material";
-import FlightResume from "../FlightsList/components/FlightResume";
+import Checkout from "./components/Checkout";
 
-const FrmPago = () => {
+const Pago = () => {
   return (
     <div>
-      <Grid container>
-        <Grid item>
-          <FlightResume />
-        </Grid>
-      </Grid>
+      <Checkout />
     </div>
   );
 };
 
-export default FrmPago;
+export default Pago;

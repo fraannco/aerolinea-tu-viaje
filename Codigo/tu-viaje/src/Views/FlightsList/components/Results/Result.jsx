@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link, useParams } from "react-router-dom";
@@ -14,15 +14,21 @@ const useStyles = makeStyles({
   },
 });
 
-const Result = ({ arrival, departure, airline, flight }, props) => {
-  const { vueloSeleccionado, busquedaIdaVuelta, setBusquedaIdaVuelta, textosBuscados, fechas } = useContext(FlightsContext);
+const Result = ({ arrival, departure, airline, flight }) => {
+  const {
+    vueloSeleccionado,
+    busquedaIdaVuelta,
+    busquedaVuelta,
+    setBusquedaIdaVuelta,
+    fechas,
+  } = useContext(FlightsContext);
 
   const classes = useStyles();
   const { id } = useParams();
   const precio = Math.floor(Math.random() * (1000 - 500)) + 500;
 
   const handleClick = (e) => {
-    if(vueloSeleccionado.length===0){
+    if (vueloSeleccionado.length < 2) {
       vueloSeleccionado.push({
         salida: departure.timezone,
         aeropuertoSalida: departure.airport,
@@ -36,26 +42,11 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
         codigoVuelo: flight.icao,
         pagado: false,
       });
-    }else{
-      vueloSeleccionado.push({
-        salida: departure.timezone,
-        aeropuertoSalida: departure.airport,
-        fechaSalida: new Date("2022-01-25"),
-        llegada: arrival.timezone,
-        aerolineaLlegada: arrival.airport,
-        fechaLlegada: fechas[1],
-        precio: precio,
-        aerolinea: airline.name,
-        numeroVuelo: flight.number,
-        codigoVuelo: flight.icao,
-        pagado: false,
-      });
     }
-    
-    console.log(vueloSeleccionado.length)
-    console.log(vueloSeleccionado)
-    if(vueloSeleccionado.length===1) setBusquedaIdaVuelta(false)
   };
+
+  if(vueloSeleccionado.length===1)
+    setBusquedaIdaVuelta(false)
 
   return (
     <Grid
@@ -75,7 +66,11 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} md={4} sm={4} p={1}>
         <Box>
-          <Typography color="#757575" variant="subtitle1" style={{color: "black"}}>
+          <Typography
+            color="#757575"
+            variant="subtitle1"
+            style={{ color: "black" }}
+          >
             Fecha de salida
           </Typography>
           <Typography color="#757575" variant="subtitle1">
@@ -95,7 +90,11 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} md={4} sm={4} p={1}>
         <Box>
-          <Typography color="#757575" variant="subtitle1" style={{color: "black"}}>
+          <Typography
+            color="#757575"
+            variant="subtitle1"
+            style={{ color: "black" }}
+          >
             Fecha de llegada
           </Typography>
           <Typography color="#757575" variant="subtitle1">
@@ -112,16 +111,24 @@ const Result = ({ arrival, departure, airline, flight }, props) => {
       </Grid>
       <Grid item xs={12} justify="center" align="center" p={1}>
         <Box>
-          <Link to={busquedaIdaVuelta ? `/vuelta/${textosBuscados[0]}` : `/asientos_ida/${vueloSeleccionado[0].codigoVuelo}`} style={{textDecoration: "none"}}>
-            <Button
-              size="large"
-              variant="outlined"
-              fullWidth
-              onClick={handleClick}
+          <p>{`VALOR DE vueloSeleccionado: ${vueloSeleccionado.length}`}</p>
+          <Button
+            size="large"
+            variant="outlined"
+            fullWidth
+            onClick={handleClick}
+          >
+            <Link
+              to={
+                busquedaIdaVuelta
+                  ? `/vuelta/${busquedaVuelta}`
+                  : `/asientos_ida/${id}`
+              }
+              style={{ textDecoration: "none" }}
             >
-              Seleccionar
-            </Button>
-          </Link>
+              {`Seleccionar busquedaIdaVuelta: ${busquedaIdaVuelta}, n: ${vueloSeleccionado.length}`}
+            </Link>
+          </Button>
         </Box>
       </Grid>
     </Grid>

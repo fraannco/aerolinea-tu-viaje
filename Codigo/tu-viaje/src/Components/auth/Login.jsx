@@ -81,7 +81,7 @@ const Login = () => {
                 fullWidth
                 required
                 value={password}
-                nChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Button

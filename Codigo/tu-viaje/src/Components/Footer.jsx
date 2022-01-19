@@ -1,7 +1,7 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { Box, Container, Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -12,7 +12,7 @@ export default function Footer() {
   const footerElements = [
     {
       title: "Menu",
-      option1: "Incio",
+      option1: "Inicio",
       option2: "Viajes",
       option3: "Agendar Cita",
     },
@@ -37,18 +37,13 @@ export default function Footer() {
   ];
 
   return (
-    <Box justifyContent="center" alignItems="center" p={5}>
-      <Container maxWidth="lg">
+    <>
+      <Box justifyContent="center" alignItems="center">
         <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justifyContent="center" spacing={2}>
-              <Grid item>
-                <Paper
-                  maxWidth="lg"
-                  style={{ padding: "1em", boxShadow: "none" }}
-                  alignContent="center"
-                  justifyContent="center"
-                >
+          <Grid item xs={12} backgroundColor="white">
+            <Grid container p={1} justifyContent="center" spacing={2}>
+              <Grid item xs={12} sm={4} md={2} align="center">
+                <Paper style={{ padding: "1em", boxShadow: "none" }}>
                   <Grid item xs={12} sm={10}>
                     <Box
                       alignItems="center"
@@ -65,6 +60,7 @@ export default function Footer() {
                     >
                       tu-viaje
                     </Box>
+
                     <Box p={1}>
                       <Link
                         href="/"
@@ -76,6 +72,7 @@ export default function Footer() {
                         Disfruta viajando con nuestra web
                       </Link>
                     </Box>
+
                     <Box p={1}>
                       <Link
                         href="/"
@@ -92,13 +89,12 @@ export default function Footer() {
                   </Grid>
                 </Paper>
               </Grid>
+
+              {/* LAS OTRAS 4 TARJETAS */}
               {footerElements.map((footerElement, index) => {
                 return (
-                  <Grid item>
-                    <Paper
-                      maxWidth="lg"
-                      style={{ padding: "1em", boxShadow: "none" }}
-                    >
+                  <Grid key={index} item xs={12} sm={4} md={2} align="center">
+                    <Paper style={{ padding: "1em", boxShadow: "none" }}>
                       <Grid
                         item
                         xs={12}
@@ -114,23 +110,35 @@ export default function Footer() {
                             fontSize: "20px",
                             lineHeight: "23px",
                             textDecoration: "none",
-                            marginTop: "1em"
+                            marginTop: "1em",
                           }}
                         >
                           {footerElement.title}
                         </Box>
-                        <Box style={{marginTop: "1em"}}>
-                          <Link href="/" color="inherit" style={{textDecoration: "none"}}>
-                          {footerElement.option1}
+                        <Box style={{ marginTop: "1em" }}>
+                          <Link
+                            href="/"
+                            color="inherit"
+                            style={{ textDecoration: "none" }}
+                          >
+                            {footerElement.option1}
                           </Link>
                         </Box>
-                        <Box style={{marginTop: "1em" }}>
-                          <Link href="/" color="inherit" style={{textDecoration: "none"}}>
+                        <Box style={{ marginTop: "1em" }}>
+                          <Link
+                            href="/"
+                            color="inherit"
+                            style={{ textDecoration: "none" }}
+                          >
                             {footerElement.option2}
                           </Link>
                         </Box>
-                        <Box style={{marginTop: "1em"}}>
-                          <Link href="/" color="inherit" style={{textDecoration: "none"}}>
+                        <Box style={{ marginTop: "1em" }}>
+                          <Link
+                            href="/"
+                            color="inherit"
+                            style={{ textDecoration: "none" }}
+                          >
                             {footerElement.option3}
                           </Link>
                         </Box>
@@ -142,7 +150,7 @@ export default function Footer() {
             </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </Box>
+      </Box>
+    </>
   );
 }

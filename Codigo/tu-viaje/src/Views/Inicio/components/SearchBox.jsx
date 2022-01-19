@@ -1,6 +1,6 @@
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 import { Box, Button, Grid, TextField } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
@@ -32,28 +32,28 @@ const Searchbox = () => {
   const [pasajeros, setPasajeros] = React.useState(0);
 
   const {
-    textosBuscados,
+    setBusquedaIda,
+    setBusquedaVuelta,
     busquedaIdaVuelta,
     setBusquedaIdaVuelta,
+    vueloSeleccionado,
     fechas,
-    nroPasajeros,
-    setNroPasajeros,
+    setVueloSeleccionado,
   } = useContext(FlightsContext);
 
   const handleClick = (e) => {
-    textosBuscados.push(origen, destino);
+    if (vueloSeleccionado.length > 0) {
+      setVueloSeleccionado([]);
+    }
+    setBusquedaIda(destino)
+    setBusquedaVuelta(origen)
     fechas.push(fechaIda, fechaVuelta);
-    console.log(nroPasajeros)
   };
-
-  useEffect(() => {
-    setNroPasajeros(pasajeros)
-    /* console.log(`Nro de pasajeros: ${nroPasajeros}`); */
-  },[])
 
   return (
     <div>
       <form>
+        {`estado: ${busquedaIdaVuelta}`}
         {busquedaIdaVuelta ? (
           <Grid container alignItems="left">
             <Grid item xs={12} md={12} sm={12}>
@@ -68,6 +68,7 @@ const Searchbox = () => {
                     size="large"
                     onClick={() => {
                       setBusquedaIdaVuelta(true);
+                      console.log(busquedaIdaVuelta);
                     }}
                   >
                     Ida y vuelta
@@ -83,6 +84,7 @@ const Searchbox = () => {
                     }}
                     onClick={() => {
                       setBusquedaIdaVuelta(false);
+                      console.log(busquedaIdaVuelta);
                     }}
                   >
                     Solo ida
@@ -280,7 +282,7 @@ const Searchbox = () => {
                 onClick={handleClick}
               >
                 <Link
-                  to={`/ida/${destino}`}
+                  to={`/solo-ida/${destino}`}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   BUSCAR VUELO
