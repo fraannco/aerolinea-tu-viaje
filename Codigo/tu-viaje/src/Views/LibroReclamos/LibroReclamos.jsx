@@ -6,8 +6,6 @@ import {
   Typography,
   InputAdornment,
   IconButton,
-  InputLabel,
-  OutlinedInput,
   FormGroup,
   FormControlLabel,
   Checkbox,
@@ -29,8 +27,6 @@ import MuiAlert from '@mui/material/Alert';
 import { green } from '@mui/material/colors';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
